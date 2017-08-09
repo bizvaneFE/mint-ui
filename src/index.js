@@ -31,6 +31,7 @@ import DatetimePicker from '../packages/datetime-picker';
 import IndexList from '../packages/index-list';
 import IndexSection from '../packages/index-section';
 import PaletteButton from '../packages/palette-button';
+import ModalBox from '../packages/modal-box';
 import '../src/assets/font/iconfont.css';
 import merge from './utils/merge';
 
@@ -66,6 +67,7 @@ const install = function(Vue, config = {}) {
   Vue.component(IndexList.name, IndexList);
   Vue.component(IndexSection.name, IndexSection);
   Vue.component(PaletteButton.name, PaletteButton);
+  Vue.component(ModalBox.name, ModalBox);
   Vue.use(InfiniteScroll);
   Vue.use(Lazyload, merge({
     loading: require('./assets/loading-spin.svg'),
@@ -117,5 +119,6 @@ module.exports = {
   DatetimePicker,
   IndexList,
   IndexSection,
-  PaletteButton
+  PaletteButton,
+  ModalBox
 };

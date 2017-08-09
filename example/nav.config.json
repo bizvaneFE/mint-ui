@@ -33,6 +33,11 @@
         "icon": "message-box"
       },
       {
+        "path": "/modal-box",
+        "name": "Modal box",
+        "icon": "message-box"
+      },
+      {
         "path": "/action-sheet",
         "name": "Action sheet",
         "icon": "action-sheet"
