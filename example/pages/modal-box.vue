@@ -31,10 +31,9 @@
   export default {
     methods: {
       openAlert() {
-        const h = this.$createElement;
-        ModalBox.alert("123", "").then((res) => {
+        ModalBox.alert('123', '12').then(res => {
           console.log(res);
-        }); 
+        });
       },
 
       openConfirm() {

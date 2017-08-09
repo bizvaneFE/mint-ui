@@ -165,6 +165,7 @@
     },
 
     data() {
+      console.log('data');
       return {
         currentValue: this.value,
         mutatingValues: this.values,
@@ -219,7 +220,9 @@
         return [ -itemHeight * (values.length - Math.ceil(visibleItemCount / 2)), itemHeight * Math.floor(visibleItemCount / 2) ];
       }
     },
-
+    created() {
+      console.log('create');
+    },
     methods: {
       value2Translate(value) {
         var values = this.mutatingValues;
@@ -374,7 +377,6 @@
       doOnValueChange() {
         var value = this.currentValue;
         var wrapper = this.$refs.wrapper;
-
         translateUtil.translateElement(wrapper, null, this.value2Translate(value));
       },
 
@@ -427,10 +429,14 @@
         this.$emit('input', val);
         this.dispatch('picker', 'slotValueChange', this);
       },
-      defaultIndex(val) {
-        if ((this.mutatingValues[val] !== undefined) && (this.mutatingValues.length >= val + 1)) {
-          this.currentValue = this.mutatingValues[val];
-        }
+      defaultIndex: {
+        handler(val) {
+          console.log('-------', this.defaultIndex);
+          if ((this.mutatingValues[val] !== undefined) && (this.mutatingValues.length >= val + 1)) {
+            this.currentValue = this.mutatingValues[val];
+          }
+        },
+        immediate: true
       }
     }
   };
