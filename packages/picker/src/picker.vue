@@ -95,6 +95,7 @@
     created() {
       this.$on('slotValueChange', this.slotValueChange);
       var slots = this.slots || [];
+      console.log('slots', slots);
       var values = [];
       var valueIndexCount = 0;
       slots.forEach(slot => {

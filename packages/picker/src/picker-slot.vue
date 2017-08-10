@@ -435,8 +435,7 @@
           if ((this.mutatingValues[val] !== undefined) && (this.mutatingValues.length >= val + 1)) {
             this.currentValue = this.mutatingValues[val];
           }
-        },
-        immediate: true
+        }
       }
     }
   };
