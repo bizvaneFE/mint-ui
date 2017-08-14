@@ -2004,11 +2004,41 @@ display: inline-block;
   -webkit-transition: .2s;
   transition: .2s;
 }
+.mint-msgbox span.close-btn {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+.mint-msgbox span.close-btn:before {
+  position: absolute;
+  top: 9px;
+  content: "";
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #dcb15b;
+  line-height: 0;
+  font-size: 0;
+  vertical-align: middle;
+  -webkit-transform: rotate(45deg);
+}
+.mint-msgbox span.close-btn:after {
+  content: "";
+  top: 9px;
+  background-color: #dcb15b;
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 2px;
+  -webkit-transform: rotate(-45deg);
+}
 .mint-msgbox-header {
   padding: 15px 0 0;
 }
 .mint-msgbox-content {
-  padding: 10px 20px 15px;
   border-bottom: 1px solid #ddd;
   min-height: 36px;
   position: relative;

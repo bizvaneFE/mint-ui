@@ -3,6 +3,8 @@
     <h1 class="page-title">Message Box</h1>
     <div class="page-msgbox-wrapper">
       <mt-button @click.native="openAlert" size="large">打开 alert 提示框</mt-button>
+      <mt-button @click.native="openAlertNoActionButton" size="large">打开 confirm 提示框有action button</mt-button>
+      <mt-button @click.native="openAlertHasActionButton" size="large">打开 confirm 提示框没有action button</mt-button>
       <mt-button @click.native="openConfirm" size="large">打开 confirm 提示框</mt-button>
       <mt-button @click.native="openPrompt" size="large">打开 prompt 提示框</mt-button>
     </div>
@@ -27,12 +29,48 @@
 
 <script type="text/babel">
   import { ModalBox } from 'src/index';
+  import slotModal from './../test_component/slot_modal';
+  import Vue from 'vue';
 
   export default {
     methods: {
       openAlert() {
-        ModalBox.alert('123', '12').then(res => {
+        const h = this.$createElement;
+        ModalBox.confirm(h(slotModal), '', { 
+          confirmButtonHighlight: true, 
+          showButton: true,
+          showClose: true, 
+          showCancelButton: true
+        }).then(res => {
           console.log(res);
+        },err => {
+          console.log(err);
+        });
+      },
+      openAlertNoActionButton() {
+        const h = this.$createElement;
+        ModalBox.confirm(h(slotModal), '', { 
+          confirmButtonHighlight: true, 
+          showButton: false,
+          showClose: true, 
+          showCancelButton: true
+        }).then(res => {
+          console.log(res);
+        },err => {
+          console.log(err);
+        });
+      },
+
+      openAlertHasActionButton() {
+        const h = this.$createElement;
+        ModalBox.confirm(h(slotModal), '', { 
+          confirmButtonHighlight: true, 
+          showClose: true, 
+          showCancelButton: true
+        }).then(res => {
+          console.log(res);
+        },err => {
+          console.log(err);
         });
       },
 

@@ -49,9 +49,11 @@ var merge = function(target) {
 var ModalBoxConstructor = Vue.extend(modalboxVue);
 
 var currentMsg, instance;
-var msgQueue = [];
+var msgQueue = [], instances = [];
 
 const defaultCallback = action => {
+  instance = instances[instances.length-1];
+  currentMsg = msgQueue[msgQueue.length-1]; 
   if (currentMsg) {
     var callback = currentMsg.callback;
     if (typeof callback === 'function') {
@@ -68,7 +70,12 @@ const defaultCallback = action => {
           if (instance.showInput) {
             currentMsg.resolve({ value: instance.inputValue, action });
           } else {
-            currentMsg.resolve(action);
+            console.log(instance.$children);
+            if(instance.$children && instance.$children.length) {
+              currentMsg.resolve({value: instance.$children[0].formModel, action });
+            } else {
+              currentMsg.resolve({ action });
+            }
           }
         } else if (action === 'cancel' && currentMsg.reject) {
           currentMsg.reject(action);
@@ -77,6 +84,15 @@ const defaultCallback = action => {
         currentMsg.resolve(action);
       }
     }
+    
+    msgQueue[msgQueue.length-1] = null;
+    instances[instances.length-1] = null;
+    msgQueue.pop();
+    instances.pop();
+    setTimeout(()=> {
+      document.body.removeChild(instance.$el);
+    }, 300)
+    
   }
 };
 
@@ -84,18 +100,19 @@ var initInstance = function() {
   instance = new ModalBoxConstructor({
     el: document.createElement('div')
   });
-
   instance.callback = defaultCallback;
+  
+  instances.push(instance);
 };
 
 var showNextMsg = function() {
-  if (!instance) {
-    initInstance();
-  }
+  initInstance();
+  
+  instance = instances[instances.length-1];
 
   if (!instance.value || instance.closeTimer) {
     if (msgQueue.length > 0) {
-      currentMsg = msgQueue.shift();
+      currentMsg = msgQueue[msgQueue.length-1];
 
       var options = currentMsg.options;
       for (var prop in options) {

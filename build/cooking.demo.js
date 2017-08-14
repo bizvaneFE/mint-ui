@@ -19,7 +19,7 @@ cooking.set({
   urlLoaderLimit: 10000,
   extractCSS: true,
   sourceMap: true,
-  extends: ['vue2', 'lint', 'saladcss', 'buble'],
+  extends: ['vue2', 'saladcss', 'buble'],
   alias: config.alias,
   externals: process.env.NODE_ENV === 'production' ? {
     vue: 'Vue',

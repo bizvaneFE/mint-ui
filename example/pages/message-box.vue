@@ -31,7 +31,9 @@
   export default {
     methods: {
       openAlert() {
-        MessageBox.alert('操作成功!', '提示');
+        MessageBox.alert('操作成功!', '提示', { confirmButtonHighlight: true }).then(()=>{
+          alert(1);
+        });
       },
 
       openConfirm() {

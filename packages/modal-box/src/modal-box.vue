@@ -2,8 +2,9 @@
   <div class="mint-msgbox-wrapper">
     <transition name="msgbox-bounce">
       <div class="mint-msgbox" v-show="value">
-        <div class="mint-msgbox-header" v-if="title !== ''">
-          <div class="mint-msgbox-title">{{ title }}</div>
+        <span class="close-btn" @click="handleAction('cancel')" v-if="showClose"></span>
+        <div class="mint-msgbox-header">
+          <div class="mint-msgbox-title" v-if="title !== ''">{{ title }}</div>
         </div>
         <div class="mint-msgbox-content" v-if="message !== ''">
           <div class="mint-msgbox-message">
@@ -14,7 +15,7 @@
             <div class="mint-msgbox-errormsg" :style="{ visibility: !!editorErrorMessage ? 'visible' : 'hidden' }">{{ editorErrorMessage }}</div>
           </div>
         </div>
-        <div class="mint-msgbox-btns">
+        <div class="mint-msgbox-btns" v-show="showButton">
           <button :class="[ cancelButtonClasses ]" v-show="showCancelButton" @click="handleAction('cancel')">{{ cancelButtonText }}</button>
           <button :class="[ confirmButtonClasses ]" v-show="showConfirmButton" @click="handleAction('confirm')">{{ confirmButtonText }}</button>
         </div>
@@ -38,13 +39,45 @@
       overflow: hidden;
       backface-visibility: hidden;
       transition: .2s;
+      
+      & span.close-btn {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 10px;
+        right: 10px;
+        z-index: 10;
+        &:before {
+          position: absolute;
+          top: 9px;
+          content: "";
+          display: block;
+          width: 20px;
+          height:2px;
+          background-color: #dcb15b; 
+          line-height: 0;
+          font-size:0;
+          vertical-align: middle;
+          -webkit-transform: rotate(45deg);
+        };
+
+        &:after {
+          content: "";
+          top: 9px;
+          background-color: #dcb15b;
+          position: absolute;
+          display:block;
+          width: 20px;
+          height:2px;
+          -webkit-transform: rotate(-45deg);
+        };
+      }
 
       @descendent header {
         padding: 15px 0 0;
       }
 
       @descendent content {
-        padding: 10px 20px 15px;
         border-bottom: 1px solid #ddd;
         min-height: 36px;
         position: relative;
@@ -298,11 +331,15 @@
         showCancelButton: false,
         confirmButtonText: CONFIRM_TEXT,
         cancelButtonText: CANCEL_TEXT,
+        confirmButtonHighlight: false,
+        cancelButtonHighlight: false,
         confirmButtonClass: '',
         confirmButtonDisabled: false,
         cancelButtonClass: '',
         editorErrorMessage: null,
-        callback: null
+        callback: null,
+        showButton: true,
+        showClose: true
       };
     }
   };

@@ -193,7 +193,6 @@
         return classes;
       }
     },
-
     methods: {
       doClose() {
         this.value = false;
@@ -296,6 +295,8 @@
         showCancelButton: false,
         confirmButtonText: CONFIRM_TEXT,
         cancelButtonText: CANCEL_TEXT,
+        confirmButtonHighlight: false,
+        cancelButtonHighlight: false,
         confirmButtonClass: '',
         confirmButtonDisabled: false,
         cancelButtonClass: '',
