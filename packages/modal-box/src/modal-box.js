@@ -84,14 +84,21 @@ const defaultCallback = action => {
         currentMsg.resolve(action);
       }
     }
-    
+
     msgQueue[msgQueue.length-1] = null;
     instances[instances.length-1] = null;
     msgQueue.pop();
     instances.pop();
-    setTimeout(()=> {
-      document.body.removeChild(instance.$el);
-    }, 300)
+
+    //hold instance refrence
+    (function(instance) {
+      setTimeout(()=> {
+        document.body.removeChild(instance.$el);
+        instance = null;
+      }, 300)
+    })(instance)
+    
+
     
   }
 };
