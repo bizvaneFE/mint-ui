@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<span @click="openAlert">modal again</span>
+		<div @click="openAlert">modal again</div>
 		<span @click="cancel">取消</span>
 		<span @click="confirm">确定</span>
 	</div>

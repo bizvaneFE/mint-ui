@@ -2018,7 +2018,7 @@ display: inline-block;
   content: "";
   display: block;
   width: 20px;
-  height: 2px;
+  height: 1px;
   background-color: #dcb15b;
   line-height: 0;
   font-size: 0;
@@ -2032,14 +2032,13 @@ display: inline-block;
   position: absolute;
   display: block;
   width: 20px;
-  height: 2px;
+  height: 1px;
   -webkit-transform: rotate(-45deg);
 }
 .mint-msgbox-header {
   padding: 15px 0 0;
 }
 .mint-msgbox-content {
-  border-bottom: 1px solid #ddd;
   min-height: 36px;
   position: relative;
 }
@@ -2076,16 +2075,11 @@ display: inline-block;
   font-weight: 700;
   color: #333;
 }
-.mint-msgbox-message {
-  color: #999;
-  margin: 0;
-  text-align: center;
-  line-height: 36px;
-}
 .mint-msgbox-btns {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  border-top: 1px solid #ddd;
   height: 40px;
   line-height: 40px;
 }

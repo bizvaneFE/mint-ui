@@ -7,7 +7,7 @@
           <div class="mint-msgbox-title" v-if="title !== ''">{{ title }}</div>
         </div>
         <div class="mint-msgbox-content" v-if="message !== ''">
-          <div class="mint-msgbox-message">
+          <div>
             <slot>{{ message }}</slot>
           </div>
           <div class="mint-msgbox-input" v-show="showInput">
@@ -53,7 +53,7 @@
           content: "";
           display: block;
           width: 20px;
-          height:2px;
+          height: 1px;
           background-color: #dcb15b; 
           line-height: 0;
           font-size:0;
@@ -68,7 +68,7 @@
           position: absolute;
           display:block;
           width: 20px;
-          height:2px;
+          height: 1px;
           -webkit-transform: rotate(-45deg);
         };
       }
@@ -78,7 +78,6 @@
       }
 
       @descendent content {
-        border-bottom: 1px solid #ddd;
         min-height: 36px;
         position: relative;
       }
@@ -117,18 +116,12 @@
         color: #333;
       }
 
-      @descendent message {
-        color: #999;
-        margin: 0;
-        text-align: center;
-        line-height: 36px;
-      }
-
       @descendent btns {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
+        border-top: 1px solid #ddd;
         height: 40px;
         line-height: 40px;
       }
