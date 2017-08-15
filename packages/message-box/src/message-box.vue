@@ -285,6 +285,7 @@
         title: '',
         message: '',
         type: '',
+        customClass: '',
         showInput: false,
         inputValue: null,
         inputPlaceholder: '',

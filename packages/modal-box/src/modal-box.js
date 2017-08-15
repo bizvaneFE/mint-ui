@@ -5,6 +5,7 @@ var defaults = {
   title: '提示',
   message: '',
   type: '',
+  customClass: '',
   showInput: false,
   showClose: true,
   modalFade: false,

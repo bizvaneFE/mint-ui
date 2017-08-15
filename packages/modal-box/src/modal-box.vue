@@ -1,7 +1,7 @@
 <template>
   <div class="mint-msgbox-wrapper">
     <transition name="msgbox-bounce">
-      <div class="mint-msgbox" v-show="value">
+      <div class="mint-msgbox" v-show="value" :class="customClass">
         <span class="close-btn" @click="handleAction('cancel')" v-if="showClose"></span>
         <div class="mint-msgbox-header">
           <div class="mint-msgbox-title" v-if="title !== ''">{{ title }}</div>
@@ -321,6 +321,7 @@
         title: '',
         message: '',
         type: '',
+        customClass: '',
         showInput: false,
         inputValue: null,
         inputPlaceholder: '',

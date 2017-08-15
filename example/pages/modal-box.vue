@@ -25,6 +25,9 @@
       }
     }
   }
+  .mint-msgbox-wrapper .dddd {
+    width: 10rem;
+  }
 </style>
 
 <script type="text/babel">
@@ -40,7 +43,8 @@
           confirmButtonHighlight: true, 
           showButton: true,
           showClose: true, 
-          showCancelButton: true
+          showCancelButton: true,
+          customClass : "dddd"
         }).then(res => {
           console.log(res);
         },err => {
