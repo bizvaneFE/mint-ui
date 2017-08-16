@@ -332,8 +332,7 @@
         cancelButtonClass: '',
         editorErrorMessage: null,
         callback: null,
-        showButton: true,
-        showClose: true
+        showButton: true
       };
     }
   };

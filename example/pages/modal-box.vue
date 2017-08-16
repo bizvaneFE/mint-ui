@@ -39,7 +39,7 @@
     methods: {
       openAlert() {
         const h = this.$createElement;
-        ModalBox.confirm(h(slotModal), '', { 
+        ModalBox.alert(h(slotModal), '', { 
           confirmButtonHighlight: true, 
           showButton: true,
           showClose: true, 

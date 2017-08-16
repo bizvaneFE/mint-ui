@@ -82,7 +82,15 @@ const defaultCallback = action => {
           currentMsg.reject(action);
         }
       } else {
-        currentMsg.resolve(action);
+        if (action == 'confirm') {
+          if(instance.$children && instance.$children.length) {
+            currentMsg.resolve({value: instance.$children[0].formModel, action: action });
+          } else {
+            currentMsg.resolve({ action: action });
+          }
+        } else {
+          currentMsg.resolve({ action: action });
+        }
       }
     }
 
