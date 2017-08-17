@@ -1,7 +1,7 @@
 <template>
   <div class="mint-msgbox-wrapper">
     <transition name="msgbox-bounce">
-      <div class="mint-msgbox" v-show="value" :class="customClass">
+      <div class="mint-msgbox" v-show="value" :class="customClass" @click.self="handleWrapperClick">
         <span class="close-btn" @click="handleAction('cancel')" v-if="showClose"></span>
         <div class="mint-msgbox-header">
           <div class="mint-msgbox-title" v-if="title !== ''">{{ title }}</div>
@@ -224,23 +224,20 @@
 
     methods: {
       doClose() {
+        if (!this.visible) return;
         this.value = false;
         this._closing = true;
-
         this.onClose && this.onClose();
-
-        setTimeout(() => {
-          if (this.modal && this.bodyOverflow !== 'hidden') {
-            document.body.style.overflow = this.bodyOverflow;
-            document.body.style.paddingRight = this.bodyPaddingRight;
-          }
-          this.bodyOverflow = null;
-          this.bodyPaddingRight = null;
-        }, 200);
-        this.opened = false;
-
+        document.body.style.overflow = this.bodyOverflow;
         if (!this.transition) {
           this.doAfterClose();
+        }
+        if (this.action) this.callback(this.action, this);
+      },
+
+      handleWrapperClick() {
+        if (this.closeOnClickModal) {
+          this.handleAction('cancel');
         }
       },
 
@@ -248,9 +245,12 @@
         if (this.$type === 'prompt' && action === 'confirm' && !this.validate()) {
           return;
         }
-        var callback = this.callback;
-        this.value = false;
-        callback(action);
+        this.action = action;
+        if (typeof this.beforeClose === 'function') {
+          this.beforeClose(action, this, this.doClose);
+        } else {
+          this.doClose();
+        }
       },
 
       validate() {

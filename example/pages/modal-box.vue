@@ -44,7 +44,11 @@
           showButton: true,
           showClose: true, 
           showCancelButton: true,
-          customClass : "dddd"
+          customClass : "dddd",
+          beforeClose: function(action, modalInstance, modalCloseCb) {
+            //这里可以去按照条件来关闭modal 窗口条件成功则执行modalCloseCb
+            modalCloseCb();
+          }
         }).then(res => {
           console.log(res);
         },err => {

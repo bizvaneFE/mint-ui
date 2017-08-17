@@ -82,15 +82,7 @@ const defaultCallback = action => {
           currentMsg.reject(action);
         }
       } else {
-        if (action == 'confirm') {
-          if(instance.$children && instance.$children.length) {
-            currentMsg.resolve({value: instance.$children[0].formModel, action: action });
-          } else {
-            currentMsg.resolve({ action: action });
-          }
-        } else {
-          currentMsg.resolve({ action: action });
-        }
+        currentMsg.resolve(action);
       }
     }
 
@@ -157,6 +149,10 @@ var showNextMsg = function() {
         }
       });
       document.body.appendChild(instance.$el);
+      //记住之前的overflow
+      instance.bodyOverflow = document.body.style.overflow;
+
+      document.body.style.overflow = 'hidden';
 
       Vue.nextTick(() => {
         instance.value = true;
